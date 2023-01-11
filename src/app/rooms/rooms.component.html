@@ -1,0 +1,36 @@
+<body>
+  
+    <div class="content">
+      <h2>IT255-DZ06</h2>
+      <div>
+        <form>
+          <label for="roomNumber">Room number:</label><br>
+          <input type="text" id="roomNumber" name="roomNumber" #roomNumber><br>
+          <label for="floor">Floor:</label><br>
+          <input type="text" id="floor" name="floor" #floor><br>
+          <label for="description">Description:</label><br>
+          <input type="text" id="description" name="description" #description><br>
+          <label for="price">Price:</label><br>
+          <input type="number" id="price" name="price" #price><br><br>
+          <button type="submit" (click)="addRoom(roomNumber, floor, description, price)">Submit</button>
+        </form>
+      </div>
+      <div>
+        <h3>Rooms</h3>
+        <table id="customers">
+          <tr>
+            <td>Room number</td>
+            <td>Floor</td>
+            <td>Description</td>
+            <td>Price</td>
+          </tr>
+          <tr *ngFor="let room of rooms">
+            <th>{{room.roomNumber}}</th>
+            <th>{{room.floor}}</th>
+            <th>{{room.description}}</th>
+            <th>{{room.price}}</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+    </body>
