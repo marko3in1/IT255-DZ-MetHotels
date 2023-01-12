@@ -1,36 +1,45 @@
 <body>
-  
-    <div class="content">
-      <h2>IT255-DZ06</h2>
-      <div>
-        <form>
-          <label for="roomNumber">Room number:</label><br>
-          <input type="text" id="roomNumber" name="roomNumber" #roomNumber><br>
-          <label for="floor">Floor:</label><br>
-          <input type="text" id="floor" name="floor" #floor><br>
-          <label for="description">Description:</label><br>
-          <input type="text" id="description" name="description" #description><br>
-          <label for="price">Price:</label><br>
-          <input type="number" id="price" name="price" #price><br><br>
-          <button type="submit" (click)="addRoom(roomNumber, floor, description, price)">Submit</button>
-        </form>
-      </div>
-      <div>
-        <h3>Rooms</h3>
-        <table id="customers">
-          <tr>
-            <td>Room number</td>
-            <td>Floor</td>
-            <td>Description</td>
-            <td>Price</td>
-          </tr>
-          <tr *ngFor="let room of rooms">
-            <th>{{room.roomNumber}}</th>
-            <th>{{room.floor}}</th>
-            <th>{{room.description}}</th>
-            <th>{{room.price}}</th>
-          </tr>
-        </table>
-      </div>
+
+  <div class="content">
+    <h2>IT255-DZ08</h2>
+    <div>
+      <form [formGroup]="roomForm">
+        <label>Room number:</label><br>
+        <input type="number" #roomNumber formControlName="roomNumber" required><br>
+        <label>Floor:</label><br>
+        <input type="number" #floor formControlName="floor" required><br>
+        <label>Description:</label><br>
+        <input type="text" #description formControlName="description" required><br>
+        <span *ngIf="checkDescription(description.value)">Must contain minimum of 6 characters!</span><br>
+        <label>Price:</label><br>
+        <input type="number" #price formControlName="price" required><br><br>
+        <div *ngFor="let option of optionList, let i = index">
+          <label>{{ option.name }}</label>
+          <input type="checkbox" (ngModelChange)="incrementSauna($event, i)" formControlName="option">
+        </div>
+        <br>
+        <button [disabled]="checkDescription(description.value)"
+          (click)="addRoom(roomNumber, floor, description, price)">
+          Submit
+        </button>
+      </form>
     </div>
-    </body>
+    <div>
+      <h3>Rooms</h3>
+      <table id="customers">
+        <tr>
+          <td>Room number</td>
+          <td>Floor</td>
+          <td>Description</td>
+          <td>Price</td>
+        </tr>
+        <tr *ngFor="let room of rooms">
+          <th>{{room.roomNumber}}</th>
+          <th>{{room.floor}}</th>
+          <th>{{room.description}}</th>
+          <th>{{room.price}}</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
