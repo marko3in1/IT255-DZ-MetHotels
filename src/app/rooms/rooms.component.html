@@ -1,7 +1,7 @@
 <body>
 
   <div class="content">
-    <h2>IT255-DZ08</h2>
+    <h2>IT255-DZ09</h2>
     <div>
       <form [formGroup]="roomForm">
         <label>Room number:</label><br>
@@ -13,13 +13,15 @@
         <span *ngIf="checkDescription(description.value)">Must contain minimum of 6 characters!</span><br>
         <label>Price:</label><br>
         <input type="number" #price formControlName="price" required><br><br>
+        <label>Number of nights:</label><br>
+        <input type="number" #numberOfNights formControlName="numberOfNights" required><br><br>
         <div *ngFor="let option of optionList, let i = index">
           <label>{{ option.name }}</label>
           <input type="checkbox" (ngModelChange)="incrementSauna($event, i)" formControlName="option">
         </div>
         <br>
         <button [disabled]="checkDescription(description.value)"
-          (click)="addRoom(roomNumber, floor, description, price)">
+          (click)="addRoom(roomNumber, floor, description, price, numberOfNights)">
           Submit
         </button>
       </form>
@@ -32,12 +34,16 @@
           <td>Floor</td>
           <td>Description</td>
           <td>Price</td>
+          <td>Number of nights</td>
+          <td>Total</td>
         </tr>
         <tr *ngFor="let room of rooms">
           <th>{{room.roomNumber}}</th>
           <th>{{room.floor}}</th>
           <th>{{room.description}}</th>
           <th>{{room.price}}</th>
+          <th>{{room.numberOfNights}}</th>
+          <th>{{totalPrice}}</th>
         </tr>
       </table>
     </div>
