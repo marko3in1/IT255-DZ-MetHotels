@@ -7,6 +7,7 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RoomService } from './services/roomService';
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RoomService } from './services/roomService';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [RoomService],
   bootstrap: [AppComponent]

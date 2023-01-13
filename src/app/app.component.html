@@ -1,2 +1,48 @@
-<app-navbar></app-navbar>
-<app-rooms></app-rooms>
+<!-- <app-navbar></app-navbar> -->
+<!-- <app-rooms></app-rooms> -->
+<form [formGroup]="roomForm" (ngSubmit)="submitForm()">
+    <label>Room number:</label><br>
+    <input type="number" #roomNumber formControlName="roomNumber" required><br>
+    <label>Floor:</label><br>
+    <input type="number" #floor formControlName="floor" required><br>
+    <label>Description:</label><br>
+    <input type="text" #description formControlName="description" required><br>
+    <label>Price:</label><br>
+    <input type="number" #price formControlName="price" required><br><br>
+    <label>Number of nights:</label><br>
+    <input type="number" #numberOfNights formControlName="numberOfNights" required><br><br>
+    <br>
+    <button type="submit" name="submit" class="btn btn-success">Dodaj</button>
+</form>
+
+<div class="container mt-5 pt-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Room Number</th>
+                <th scope="col">Floor</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Number Of Nights</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let room of rooms; index as i;">
+                <th scope="row">{{room.roomNumber}}</th>
+                <th>{{room.floor}}</th>
+                <td>{{room.description}</td>
+                <td>{{room.price}}</td>
+                <td>{{room.numberOfNights}}</td>
+                <td>
+                    <button (click)="room.roomNumber ? getRoom(room.roomNumber) : null" type="button"
+                        class="btn btn-primary">Get room</button>
+                </td>
+                <td>
+                    <button (click)="room.roomNumber ? deleteRoom(room.roomNumber) : null" type="button" class="btn
+    btn-danger">Delete room</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
