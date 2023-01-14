@@ -1,0 +1,22 @@
+<h2 style="text-align: center">IT255-DZ11</h2>
+<br>
+<div class="btn-group">
+  <button (click)="offerFunction()">Ponuda</button>
+</div>
+<br/>
+<table>
+  <tr>
+    <td>Room number</td>
+    <td>Floor</td>
+    <td>Description</td>
+    <td>Number of nights</td>
+  </tr>
+  <tr *ngFor="let room of rooms">
+    <th>{{room.roomNumber}}</th>
+    <th>{{room.floor}}</th>
+    <th>{{room.description}}</th>
+    <th>{{room.price}}</th>
+    <th>{{room.numberOfNights}}</th>
+  </tr>
+</table>
+<hr>
